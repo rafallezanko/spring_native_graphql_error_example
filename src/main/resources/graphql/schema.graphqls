@@ -1,0 +1,17 @@
+type Query {
+    experiences: [Experience]
+}
+
+type Mutation {
+    createExperience(input: CreateExperienceDto!): Experience
+}
+
+input CreateExperienceDto {
+    name: String!
+}
+
+type Experience {
+    id: String!,
+    name: String!,
+    creator: String!,
+}
