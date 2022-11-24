@@ -4,9 +4,9 @@ import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
 plugins {
     id("org.springframework.boot") version "3.0.0-SNAPSHOT"
     id("io.spring.dependency-management") version "1.1.0"
-    id("org.graalvm.buildtools.native") version "0.9.16"
-    kotlin("jvm") version "1.7.20"
-    kotlin("plugin.spring") version "1.7.20"
+    id("org.graalvm.buildtools.native") version "0.9.18"
+    kotlin("jvm") version "1.7.21"
+    kotlin("plugin.spring") version "1.7.21"
 }
 
 group = "com.example"
@@ -27,8 +27,8 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
-    runtimeOnly("org.jetbrains.kotlinx:kotlinx-serialization-core:1.4.1")
-    runtimeOnly("org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:1.4.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.4.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:1.4.1")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")
     testImplementation("org.springframework.graphql:spring-graphql-test")
@@ -53,4 +53,10 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+graalvmNative {
+    metadataRepository {
+        enabled.set(true)
+    }
 }
